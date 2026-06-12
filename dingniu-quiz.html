@@ -804,7 +804,7 @@ function renderQuestion(idx) {
   document.getElementById('progressFill').style.width = `${pct}%`;
 
   let optionsHTML = '';
-  if (q.type === 'single') {
+  if (q.type === 'single' || q.type === 'picture') {
     optionsHTML = '<div class="options">';
     q.options.forEach((opt, oi) => {
       const sel = answers[q.id] === oi ? ' selected' : '';
@@ -834,7 +834,7 @@ function renderQuestion(idx) {
   }
 
   const isFirst = idx === 0;
-  const hasAnswer = q.type === 'single' ? answers[q.id] !== undefined : (multiSelections[q.id] || []).length > 0;
+  const hasAnswer = (q.type === 'single' || q.type === 'picture') ? answers[q.id] !== undefined : (multiSelections[q.id] || []).length > 0;
 
   const pictureHTML = q.type === 'picture' ? `<div class="pic-question-img">${q.picture}</div><div class="pic-question-label">👆 让孩子指一指、选一选</div>` : '';
 
@@ -901,7 +901,7 @@ function calcAndShowResult() {
   let score = 0;
 
   questions.forEach(q => {
-    if (q.type === 'single') {
+    if (q.type === 'single' || q.type === 'picture') {
       const oi = answers[q.id];
       if (oi !== undefined) {
         score += q.options[oi].score;
