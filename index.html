@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>3分钟测出孩子英语阅读隐患 | 鼎牛阅读</title>
+<style>
+  :root {
+    --primary: #F5A623;
+    --primary-dark: #E08E0B;
+    --bg: #FFF8F0;
+    --card: #FFFFFF;
+    --text: #2D2D2D;
+    --text-light: #6B6B6B;
+    --danger: #E74C3C;
+    --success: #27AE60;
+    --border: #F0E0D0;
+    --shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+    background: linear-gradient(180deg, #FFF5E8 0%, #FFF8F0 30%, #FFF 100%);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== Header ===== */
+  .header {
+    text-align: center;
+    padding: 28px 0 16px;
+  }
+  .logo {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    letter-spacing: 2px;
+  }
+  .logo span { color: var(--text); font-weight: 400; font-size: 14px; }
+
+  /* ===== Progress Bar ===== */
+  .progress-wrap {
+    padding: 0 0 20px;
+  }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: var(--text-light);
+  }
+  .progress-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #F5A623, #F7C56C);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  /* ===== Card ===== */
+  .card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: var(--shadow);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .question-num {
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .question-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .question-hint {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 24px;
+  }
+
+  /* ===== Options ===== */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #FAFAFA;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .option:active {
+    transform: scale(0.98);
+  }
+  .option.selected {
+    border-color: var(--primary);
+    background: #FFF8EC;
+    box-shadow: 0 0 0 3px rgba(245,166,35,0.1);
+  }
+
+  .option-letter {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #F0F0F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+    color: var(--text-light);
+    transition: all 0.2s;
+  }
+  .option.selected .option-letter {
+    background: var(--primary);
+    color: #FFF;
+  }
+
+  .option-text {
+    font-size: 15px;
+    line-height: 1.5;
+    padding-top: 3px;
+  }
+  .option-score {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 2px;
+  }
+  .option.selected .option-score {
+    color: var(--primary);
+  }
+
+  /* Multi-select */
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .check-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    background: #FAFAFA;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .check-option:active { transform: scale(0.98); }
+  .check-option.checked {
+    border-color: var(--primary);
+    background: #FFF8EC;
+  }
+
+  .check-box {
+    width: 22px; height: 22px;
+    border: 2px solid #CCC;
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .check-option.checked .check-box {
+    background: var(--primary);
+    border-color: var(--primary);
+  }
+  .check-option.checked .check-box::after {
+    content: '✓';
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* ===== Buttons ===== */
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 20px;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:active { transform: scale(0.96); }
+
+  .btn-prev {
+    background: #F5F5F5;
+    color: var(--text-light);
+  }
+  .btn-next {
+    background: linear-gradient(135deg, #F5A623, #F0B840);
+    color: #FFF;
+    box-shadow: 0 4px 12px rgba(245,166,35,0.3);
+  }
+  .btn-next:disabled {
+    background: #DDD;
+    color: #AAA;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  .btn-full {
+    width: 100%;
+    flex: none;
+  }
+
+  /* ===== Result Page ===== */
+  .result-wrap {
+    text-align: center;
+  }
+  .result-score {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--primary);
+    line-height: 1;
+  }
+  .result-score span {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text-light);
+  }
+
+  .result-grade {
+    display: inline-block;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 12px 0 20px;
+  }
+  .grade-excellent { background: #E8F8EF; color: #1E8449; }
+  .grade-warning { background: #FFF3E0; color: #E67E22; }
+  .grade-danger { background: #FFF0ED; color: #C0392B; }
+  .grade-critical { background: #FDE8E8; color: #A93226; }
+
+  .result-analysis {
+    text-align: left;
+    background: #FFFBF5;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+    border: 1px solid var(--border);
+  }
+  .result-analysis h4 {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+  }
+  .result-analysis p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-light);
+  }
+
+  .result-dimensions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 16px 0;
+  }
+  .dim-badge {
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .dim-strong { background: #E8F8EF; color: #1E8449; }
+  .dim-weak { background: #FFF0ED; color: #C0392B; }
+  .dim-mid { background: #FFF8EC; color: #E67E22; }
+
+  /* ===== Lead Capture ===== */
+  .lead-section {
+    margin-top: 20px;
+  }
+  .lead-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .lead-subtitle {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 16px;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+  .form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.2s;
+    background: #FAFAFA;
+  }
+  .form-group input:focus {
+    border-color: var(--primary);
+    background: #FFF;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 700;
+    border: none;
+    background: linear-gradient(135deg, #E74C3C, #F05A4A);
+    color: #FFF;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 16px rgba(231,76,60,0.3);
+  }
+  .btn-submit:active { transform: scale(0.96); }
+
+  .urgency-tag {
+    display: inline-block;
+    background: #FDE8E8;
+    color: #C0392B;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; }
+    50% { opacity:0.5; }
+  }
+
+  /* ===== Admin Table ===== */
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .tag-阅读小达人 { background:#E8F8EF; color:#1E8449; }
+  .tag-拼读断层预警 { background:#FFF3E0; color:#E67E22; }
+  .tag-启蒙关键期 { background:#FFF0ED; color:#C0392B; }
+  .tag-紧急状态 { background:#FDE8E8; color:#A93226; }
+
+  /* ===== Start Page ===== */
+  .start-page {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+  }
+  .start-icon {
+    font-size: 72px;
+    margin-bottom: 20px;
+  }
+  .start-title {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .start-title .hl {
+    color: var(--primary);
+  }
+  .start-subtitle {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+  .btn-start {
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    background: linear-gradient(135deg, #F5A623, #F0B840);
+    color: #FFF;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 24px rgba(245,166,35,0.4);
+  }
+
+  .features-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .feature-item {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+  .feature-item .icon {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    text-align: center;
+    padding: 24px 0;
+    font-size: 12px;
+    color: #BBB;
+  }
+
+  /* ===== Hidden ===== */
+  .hidden { display: none !important; }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 375px) {
+    .card { padding: 22px 18px; }
+    .question-title { font-size: 16px; }
+    .option-text { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">鼎牛阅读<span> · 英语能力检测</span></div>
+  </div>
+
+  <!-- Progress (hidden on start/result) -->
+  <div class="progress-wrap hidden" id="progressWrap">
+    <div class="progress-info">
+      <span id="progressLabel">第 1/10 题</span>
+      <span id="progressPct">10%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width:10%"></div>
+    </div>
+  </div>
+
+  <!-- Main Card -->
+  <div class="card" id="cardArea"></div>
+
+  <!-- Footer -->
+  <div class="footer">英语专业团队 & 鼎牛教育AI研发团队 联合出品</div>
+
+</div>
+
+<script>
+// ===== QUESTION DATA =====
+const questions = [
+  {
+    id: 1,
+    section: '板块一 · 黄金期诊断',
+    title: '孩子今年几岁了？',
+    hint: '不同年龄段，英语学习的重点完全不同',
+    type: 'single',
+    options: [
+      { letter: 'A', text: '3–4岁', score: 5 },
+      { letter: 'B', text: '5–6岁', score: 10 },
+      { letter: 'C', text: '7–8岁', score: 10 },
+      { letter: 'D', text: '9–12岁', score: 5 },
+      { letter: 'E', text: '12岁以上', score: 0 }
+    ]
+  },
+  {
+    id: 2,
+    section: '板块一 · 黄金期诊断',
+    title: '孩子几岁开始接触英语？',
+    hint: '语言学习的“布罗卡斯区”3–8岁最活跃',
+    type: 'single',
+    options: [
+      { letter: 'A', text: '还没开始', score: 0 },
+      { letter: 'B', text: '3岁以前开始', score: 10 },
+      { letter: 'C', text: '4–6岁开始', score: 5 },
+      { letter: 'D', text: '小学一年级以后才开始', score: 0 }
+    ]
+  },
+  {
+    id: 3,
+    section: '板块二 · 能力现状检测',
+    title: '孩子看到单词「cat」，是什么反应？',
+    hint: '这道题测的是“解码能力”——见词能读',
+    type: 'single',
+    options: [
+      { letter: 'A', text: '能直接读出来，知道是“猫”', score: 10 },
+      { letter: 'B', text: '需要想一下，一个个字母拼：c-a-t → cat', score: 5 },
+      { letter: 'C', text: '不认识、读不出来', score: 0 }
+    ]
+  },
+  {
+    id: 4,
+    section: '板块二 · 能力现状检测',
+    title: '孩子看到句子「The cat sat on the mat.」，是什么反应？',
+    hint: '这题最关键——70%的孩子会读词但读不懂句子',
+    type: 'single',
+    options: [
+      { letter: 'A', text: '能流利读出来，而且知道整句意思', score: 10 },
+      { letter: 'B', text: '能读单个词，但读完不知道这句话在说什么', score: 5 },
+      { letter: 'C', text: '直接说“看不懂，太难了”', score: 0 }
+    ]
+  },
+  {
+    id: 5,
+    section: '板块二 · 能力现状检测',
+    title: '孩子读英语时，通常是什么状态？',
+    hint: '学习状态决定学习效果',
+    type: 'single',
+    options: [
+      { letter: 'A', text: '主动拿书读，越读越开心', score: 10 },
+      { letter: 'B', text: '要催才读，读几分钟就分心走神', score: 5 },
+      { letter: 'C', text: '抗拒抵触，一说英语就想跑', score: 0 }
+    ]
+  },
+  {
+    id: 6,
+    section: '板块三 · 隐藏问题排查',
+    title: '以下哪些情况符合你家孩子？（多选）',
+    hint: '选中的每一项，都是孩子英语路上的“绊脚石”',
+    type: 'multi',
+    options: [
+      { letter: '', text: '单词今天背了明天就忘', deduct: 3 },
+      { letter: '', text: '发音不标准，带有中文口音', deduct: 3 },
+      { letter: '', text: '能读课文，但考试阅读理解总丢分', deduct: 3 },
+      { letter: '', text: '学了1年以上还是不敢开口说英语', deduct: 3 },
+      { letter: '', text: '一写单词就拼错', deduct: 3 }
+    ],
+    maxDeduct: 15
+  },
+  {
+    id: 7,
+    section: '板块三 · 隐藏问题排查',
+    title: '你知道2024年秋季小学英语教材改版后，三年级第一单元对孩子的要求是什么吗？',
+    hint: '新课标变化很大，很多家长还不清楚',
+    type: 'single',
+    options: [
+      { letter: 'A', text: '知道，已经在帮孩子做准备', score: 10 },
+      { letter: 'B', text: '听说改了，但不清楚具体改了什么', score: 5 },
+      { letter: 'C', text: '完全不知道改了啥', score: 0 }
+    ]
+  },
+  {
+    id: 8,
+    section: '板块三 · 隐藏问题排查',
+    title: '孩子现在上的英语课/用的APP，主要教什么？',
+    hint: '搞清现状，才能找准问题',
+    type: 'single',
+    options: [
+      { letter: 'A', text: '系统的拼读+阅读训练，有真人老师跟进指导', score: 10 },
+      { letter: 'B', text: '唱唱跳跳磨耳朵，或者单纯刷单词App', score: 5 },
+      { letter: 'C', text: '没上任何课 / 觉得学校教的就够了', score: 0 }
+    ]
+  },
+  {
+    id: 9,
+    section: '板块四 · 家长投入度',
+    title: '你每天陪孩子学英语的时间是？',
+    hint: '不是考察你——是为了帮你找到最省心的方案',
+    type: 'single',
+    options: [
+      { letter: 'A', text: '30分钟以上，有固定计划', score: 10 },
+      { letter: 'B', text: '10–30分钟，随缘安排', score: 5 },
+      { letter: 'C', text: '基本没时间 / 全靠孩子自己', score: 0 }
+    ]
+  },
+  {
+    id: 10,
+    section: '板块四 · 家长投入度',
+    title: '你对孩子英语的期望是？',
+    hint: '目标不同，路径完全不同',
+    type: 'single',
+    options: [
+      { letter: 'A', text: '能自主阅读英文绘本和章节书，真正把英语用起来', score: 10 },
+      { letter: 'B', text: '学校考试别拖后腿就行', score: 5 },
+      { letter: 'C', text: '还没认真想过 / 不敢想太远', score: 0 }
+    ]
+  }
+];
+
+// ===== STATE =====
+let currentQ = 0;
+let answers = {};        // { qId: value }
+let multiSelections = {}; // { qId: [indices] }
+let totalScore = 0;
+
+// ===== RENDER =====
+const cardArea = document.getElementById('cardArea');
+const progressWrap = document.getElementById('progressWrap');
+
+function renderStart() {
+  progressWrap.classList.add('hidden');
+  cardArea.innerHTML = `
+    <div class="start-page">
+      <div class="start-icon">📖</div>
+      <div class="start-title">3分钟测出<br>孩子英语的<span class="hl">阅读隐患</span></div>
+      <div class="start-subtitle">
+        10道科学检测题 · 鼎牛教育团队研发<br>
+        已有 <b>12,837</b> 位家长完成测试
+      </div>
+      <button class="btn-start" onclick="startQuiz()">开始免费检测</button>
+      <div class="features-row">
+        <div class="feature-item"><span class="icon">⏱️</span>3分钟完成</div>
+        <div class="feature-item"><span class="icon">🔬</span>科学诊断</div>
+        <div class="feature-item"><span class="icon">📊</span>专属报告</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderQuestion(idx) {
+  const q = questions[idx];
+  progressWrap.classList.remove('hidden');
+  const pct = Math.round((idx + 1) / questions.length * 100);
+
+  document.getElementById('progressLabel').textContent = `第 ${idx+1}/${questions.length} 题`;
+  document.getElementById('progressPct').textContent = `${pct}%`;
+  document.getElementById('progressFill').style.width = `${pct}%`;
+
+  let optionsHTML = '';
+  if (q.type === 'single') {
+    optionsHTML = '<div class="options">';
+    q.options.forEach((opt, oi) => {
+      const sel = answers[q.id] === oi ? ' selected' : '';
+      optionsHTML += `
+        <div class="option${sel}" onclick="selectSingle(${idx}, ${oi})" id="opt-${idx}-${oi}">
+          <div class="option-letter">${opt.letter}</div>
+          <div>
+            <div class="option-text">${opt.text}</div>
+            <div class="option-score">${opt.score}分</div>
+          </div>
+        </div>`;
+    });
+    optionsHTML += '</div>';
+  } else if (q.type === 'multi') {
+    const selected = multiSelections[q.id] || [];
+    optionsHTML = '<div class="checkbox-group">';
+    q.options.forEach((opt, oi) => {
+      const checked = selected.includes(oi) ? ' checked' : '';
+      optionsHTML += `
+        <div class="check-option${checked}" onclick="toggleMulti(${idx}, ${oi})" id="mopt-${idx}-${oi}">
+          <div class="check-box"></div>
+          <div class="option-text">${opt.text}</div>
+        </div>`;
+    });
+    optionsHTML += '</div>';
+    optionsHTML += `<p style="font-size:12px;color:var(--text-light);margin-top:8px;">已选 <b id="multiCount">${selected.length}</b> 项（每项扣3分，最多扣15分）</p>`;
+  }
+
+  const isFirst = idx === 0;
+  const hasAnswer = q.type === 'single' ? answers[q.id] !== undefined : (multiSelections[q.id] || []).length > 0;
+
+  cardArea.innerHTML = `
+    <div class="question-num">${q.section}</div>
+    <div class="question-title">${q.title}</div>
+    <div class="question-hint">${q.hint}</div>
+    ${optionsHTML}
+    <div class="btn-row">
+      ${!isFirst ? '<button class="btn btn-prev" onclick="prevQ()">上一题</button>' : ''}
+      <button class="btn btn-next${!isFirst ? '' : ' btn-full'}" id="btnNext" onclick="nextQ()" ${hasAnswer ? '' : 'disabled'}>
+        ${idx < questions.length - 1 ? '下一题 →' : '查看诊断结果'}
+      </button>
+    </div>
+  `;
+}
+
+// ===== ACTIONS =====
+function startQuiz() {
+  currentQ = 0;
+  answers = {};
+  multiSelections = {};
+  totalScore = 0;
+  renderQuestion(0);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function selectSingle(qIdx, optIdx) {
+  answers[questions[qIdx].id] = optIdx;
+  renderQuestion(qIdx);
+}
+
+function toggleMulti(qIdx, optIdx) {
+  const qId = questions[qIdx].id;
+  if (!multiSelections[qId]) multiSelections[qId] = [];
+  const arr = multiSelections[qId];
+  const pos = arr.indexOf(optIdx);
+  if (pos >= 0) arr.splice(pos, 1);
+  else arr.push(optIdx);
+  renderQuestion(qIdx);
+}
+
+function nextQ() {
+  if (currentQ < questions.length - 1) {
+    currentQ++;
+    renderQuestion(currentQ);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    calcAndShowResult();
+  }
+}
+
+function prevQ() {
+  if (currentQ > 0) {
+    currentQ--;
+    renderQuestion(currentQ);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+// ===== SCORE CALC =====
+function calcAndShowResult() {
+  let score = 0;
+
+  questions.forEach(q => {
+    if (q.type === 'single') {
+      const oi = answers[q.id];
+      if (oi !== undefined) {
+        score += q.options[oi].score;
+      }
+    } else if (q.type === 'multi') {
+      // Q6: start from full 15, deduct per selection
+      const sel = multiSelections[q.id] || [];
+      const deduct = Math.min(sel.length * 3, 15);
+      score += (15 - deduct);
+    }
+  });
+
+  totalScore = score;
+  renderResult(score);
+}
+
+function renderResult(score) {
+  progressWrap.classList.add('hidden');
+
+  let grade, gradeClass, emoji, analysisTitle, analysisBody, urgencyHTML;
+
+  if (score >= 80) {
+    grade = '阅读小达人';
+    gradeClass = 'grade-excellent';
+    emoji = '🌟';
+    analysisTitle = '基础不错，但离“自由阅读”还差一步';
+    analysisBody = '孩子已具备基本的解码能力，但系统化训练仍有空间。鼎牛阅读的<strong>进阶阅读阶段</strong>可以帮孩子从“能读”跨越到“悦读”，为中考阅读理解满分打下底层能力。';
+    urgencyHTML = '';
+  } else if (score >= 50) {
+    grade = '拼读断层预警';
+    gradeClass = 'grade-warning';
+    emoji = '⚠️';
+    analysisTitle = '典型的“拼读断层”——会读词，读不懂句子';
+    analysisBody = '这是70%中国孩子都卡住的坑。孩子能拼读单词，但缺少从“词→句→段→篇”的桥梁训练。<strong>鼎牛阅读的过渡层训练</strong>专门修复这个断层，用“句子中心论”帮孩子内化句子结构，形成语感。如果不及时补上，三年级教材难度一上来，孩子会直接掉队。';
+    urgencyHTML = '<div class="urgency-tag">🔥 三年级是分水岭，现在不补就晚了</div>';
+  } else if (score >= 30) {
+    grade = '启蒙关键期';
+    gradeClass = 'grade-danger';
+    emoji = '⏰';
+    analysisTitle = '孩子还在起跑线——但黄金期不等人';
+    analysisBody = '3-8岁是语言学习的“布罗卡斯区”活跃期，孩子的大脑就是“超级语言处理器”。<strong>鼎牛阅读的启蒙层训练</strong>从音、词入手，用动漫情境+科学游戏建立语音意识和字形对应，在黄金期尾巴上高效起步。';
+    urgencyHTML = '<div class="urgency-tag">⏰ 语言黄金期3-8岁，错过事倍功半</div>';
+  } else {
+    grade = '紧急状态';
+    gradeClass = 'grade-critical';
+    emoji = '🆘';
+    analysisTitle = '英语学习已经亮红灯，必须立即干预';
+    analysisBody = '孩子当前可能存在多重困难：词汇记不住、句子读不懂、学习没兴趣。这不是孩子的问题，是方法的问题。<strong>鼎牛阅读的7大核心科技</strong>（海马体LTP、抗疲劳兴奋诱导、格式塔框架等）专治“记不住、读不懂、坐不住”，先补信心，再补能力。';
+    urgencyHTML = '<div class="urgency-tag">🆘 再不行动，三年级直接掉队</div>';
+  }
+
+  // Dimension badges
+  const dims = buildDimensionBadges();
+
+  cardArea.innerHTML = `
+    <div class="result-wrap">
+      <div style="font-size:48px;margin-bottom:8px;">${emoji}</div>
+      <div class="result-score">${score}<span>/100</span></div>
+      <div class="result-grade ${gradeClass}">${grade}</div>
+      ${urgencyHTML}
+
+      <div class="result-analysis">
+        <h4>📋 ${analysisTitle}</h4>
+        <p>${analysisBody}</p>
+      </div>
+
+      <div class="result-dimensions">
+        ${dims}
+      </div>
+
+      <div class="lead-section">
+        <div class="lead-title">🎯 免费领取专属诊断报告 + 1对1体验课</div>
+        <div class="lead-subtitle">原价399元，今天直播专属价 <b style="color:#E74C3C;">39.9元</b>，仅剩 <b style="color:#E74C3C;" id="countdown">20</b> 个名额</div>
+
+        <div class="form-group">
+          <input type="text" placeholder="您的称呼（如：小明妈妈）" id="inputName">
+        </div>
+        <div class="form-group">
+          <input type="tel" placeholder="手机号码（老师将通过此号码联系您）" id="inputPhone">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="孩子年龄（如：6岁）" id="inputAge">
+        </div>
+
+        <button class="btn-submit" onclick="submitLead()">立即领取 · 锁定专属福利</button>
+        <p style="font-size:11px;color:#BBB;margin-top:10px;">信息仅用于老师联系，不会公开或泄露</p>
+      </div>
+
+      <button class="btn btn-prev btn-full" style="margin-top:16px;" onclick="retakeQuiz()">重新检测</button>
+    </div>
+  `;
+
+  // Countdown animation
+  let count = 20;
+  const cd = document.getElementById('countdown');
+  if (cd) {
+    const timer = setInterval(() => {
+      count--;
+      if (count <= 0) { clearInterval(timer); cd.textContent = '5'; }
+      else cd.textContent = count;
+    }, 8000); // ticks every 8s for effect
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function buildDimensionBadges() {
+  const badges = [];
+  // Decoding (Q3)
+  const q3 = answers[3];
+  if (q3 === 0) badges.push(['见词能读 ✓', 'dim-strong']);
+  else if (q3 === 1) badges.push(['解码偏慢 △', 'dim-mid']);
+  else badges.push(['不会解码 ✗', 'dim-weak']);
+
+  // Sentence (Q4)
+  const q4 = answers[4];
+  if (q4 === 0) badges.push(['句子理解 ✓', 'dim-strong']);
+  else if (q4 === 1) badges.push(['句子断档 △', 'dim-mid']);
+  else badges.push(['读不懂句 ✗', 'dim-weak']);
+
+  // Interest (Q5)
+  const q5 = answers[5];
+  if (q5 === 0) badges.push(['阅读兴趣 ✓', 'dim-strong']);
+  else if (q5 === 1) badges.push(['兴趣不足 △', 'dim-mid']);
+  else badges.push(['抵触阅读 ✗', 'dim-weak']);
+
+  // Method (Q8)
+  const q8 = answers[8];
+  if (q8 === 0) badges.push(['方法正确 ✓', 'dim-strong']);
+  else if (q8 === 1) badges.push(['方法待优化 △', 'dim-mid']);
+  else badges.push(['缺乏方法 ✗', 'dim-weak']);
+
+  return badges.map(([label, cls]) => `<div class="dim-badge ${cls}">${label}</div>`).join('');
+}
+
+function retakeQuiz() {
+  currentQ = 0;
+  answers = {};
+  multiSelections = {};
+  totalScore = 0;
+  renderStart();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function submitLead() {
+  const name = document.getElementById('inputName').value.trim();
+  const phone = document.getElementById('inputPhone').value.trim();
+  const age = document.getElementById('inputAge').value.trim();
+
+  if (!name || !phone) {
+    alert('请至少填写您的称呼和手机号码，老师才能联系到您哦～');
+    return;
+  }
+  if (!/^1\d{10}$/.test(phone)) {
+    alert('请输入正确的11位手机号码');
+    return;
+  }
+
+  // Build lead record
+  const lead = {
+    name, phone, age,
+    score: totalScore,
+    grade: getGradeLabel(totalScore),
+    time: new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })
+  };
+
+  // Save to localStorage (backup)
+  const leads = JSON.parse(localStorage.getItem('dingniu_leads') || '[]');
+  leads.unshift(lead);
+  localStorage.setItem('dingniu_leads', JSON.stringify(leads));
+
+  // Send to 飞书群机器人
+  sendToFeishu(lead);
+
+  // Show success
+  const btn = document.querySelector('.btn-submit');
+  btn.textContent = '✅ 提交成功！老师将在24小时内联系您';
+  btn.style.background = 'linear-gradient(135deg, #27AE60, #2ECC71)';
+  btn.style.boxShadow = '0 4px 16px rgba(39,174,96,0.3)';
+  btn.disabled = true;
+}
+
+function sendToFeishu(lead) {
+  const colorMap = {
+    '阅读小达人': 'green',
+    '拼读断层预警': 'orange',
+    '启蒙关键期': 'red',
+    '紧急状态': 'red'
+  };
+
+  fetch('https://open.feishu.cn/open-apis/bot/v2/hook/396a2ada-4740-4437-b082-997d049d1b57', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      msg_type: 'interactive',
+      card: {
+        header: {
+          title: { content: '🔔 新线索来了！' + lead.name + ' · ' + lead.score + '分', tag: 'plain_text' },
+          template: colorMap[lead.grade] || 'blue'
+        },
+        elements: [
+          { tag: 'div', text: { content: '👤 称呼：**' + lead.name + '**', tag: 'lark_md' } },
+          { tag: 'div', text: { content: '📱 手机：**' + lead.phone + '**', tag: 'lark_md' } },
+          { tag: 'div', text: { content: '👶 孩子年龄：**' + (lead.age || '未填') + '**', tag: 'lark_md' } },
+          { tag: 'div', text: { content: '📊 诊断：**' + lead.grade + '**（' + lead.score + '/100分）', tag: 'lark_md' } },
+          { tag: 'hr' },
+          { tag: 'div', text: { content: '⏰ ' + lead.time + '　|　💾 本地已备份', tag: 'lark_md' } },
+          { tag: 'note', elements: [
+            { tag: 'plain_text', content: '请尽快联系家长，抢占先机！' }
+          ] }
+        ]
+      }
+    })
+  }).then(r => r.json()).then(data => {
+    console.log('飞书推送成功', data);
+  }).catch(err => {
+    console.error('飞书推送失败（本地已备份）', err);
+  });
+}
+
+function getGradeLabel(score) {
+  if (score >= 80) return '阅读小达人';
+  if (score >= 50) return '拼读断层预警';
+  if (score >= 30) return '启蒙关键期';
+  return '紧急状态';
+}
+
+// ===== ADMIN VIEW =====
+function renderAdmin() {
+  progressWrap.classList.add('hidden');
+  const leads = JSON.parse(localStorage.getItem('dingniu_leads') || '[]');
+
+  let rowsHTML = '';
+  if (leads.length === 0) {
+    rowsHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:#999;">暂无数据，等有人填完问卷就会出现在这里</td></tr>';
+  } else {
+    leads.forEach((l, i) => {
+      rowsHTML += `
+        <tr>
+          <td>${i + 1}</td>
+          <td><b>${l.name}</b></td>
+          <td>${l.phone}</td>
+          <td>${l.age || '-'}</td>
+          <td><span class="tag tag-${l.grade}">${l.grade}</span> ${l.score}分</td>
+          <td>${l.time}</td>
+        </tr>`;
+    });
+  }
+
+  cardArea.innerHTML = `
+    <div style="padding:8px 0;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+        <div>
+          <div style="font-size:20px;font-weight:800;">📊 线索管理后台</div>
+          <div style="font-size:13px;color:var(--text-light);">共 <b>${leads.length}</b> 条线索（数据存储在浏览器本地）</div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-prev" style="padding:8px 16px;font-size:13px;flex:none;" onclick="exportCSV()">导出CSV</button>
+          <button class="btn btn-prev" style="padding:8px 16px;font-size:13px;flex:none;color:#E74C3C;" onclick="clearLeads()">清空</button>
+          <button class="btn btn-prev" style="padding:8px 16px;font-size:13px;flex:none;" onclick="retakeQuiz()">返回问卷</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:#FFF8EC;text-align:left;">
+              <th style="padding:12px;border-bottom:2px solid var(--border);">序号</th>
+              <th style="padding:12px;border-bottom:2px solid var(--border);">称呼</th>
+              <th style="padding:12px;border-bottom:2px solid var(--border);">手机号</th>
+              <th style="padding:12px;border-bottom:2px solid var(--border);">孩子年龄</th>
+              <th style="padding:12px;border-bottom:2px solid var(--border);">诊断结果</th>
+              <th style="padding:12px;border-bottom:2px solid var(--border);">提交时间</th>
+            </tr>
+          </thead>
+          <tbody>${rowsHTML}</tbody>
+        </table>
+      </div>
+      <div style="margin-top:16px;padding:12px;background:#FFFBF5;border-radius:8px;font-size:12px;color:var(--text-light);line-height:1.8;">
+        💡 <b>提示：</b>数据保存在当前浏览器的本地存储中。<br>
+        🔗 你可以在当前浏览器访问 <b>?admin</b> 随时查看线索。<br>
+        ⚠️ 更换浏览器或清除浏览器数据会导致线索丢失。正式使用建议接入后端接口存储。
+      </div>
+    </div>
+  `;
+}
+
+function exportCSV() {
+  const leads = JSON.parse(localStorage.getItem('dingniu_leads') || '[]');
+  if (leads.length === 0) { alert('没有数据可导出'); return; }
+  let csv = '﻿序号,称呼,手机号,孩子年龄,诊断等级,分数,提交时间\n';
+  leads.forEach((l, i) => {
+    csv += `${i + 1},${l.name},${l.phone},${l.age || ''},${l.grade},${l.score},${l.time}\n`;
+  });
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = '鼎牛阅读线索.csv'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+function clearLeads() {
+  if (confirm('确定清空所有线索数据吗？此操作不可恢复！')) {
+    localStorage.removeItem('dingniu_leads');
+    renderAdmin();
+  }
+}
+
+// ===== INIT =====
+if (window.location.search.includes('admin')) {
+  renderAdmin();
+} else {
+  renderStart();
+}
+</script>
+</body>
+</html>
