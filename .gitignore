@@ -1,0 +1,8 @@
+*.pptx
+*.pdf
+*.xlsx
+*.jpg
+*.png
+.DS_Store
+.claude/
+未命名文件夹/
