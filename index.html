@@ -662,74 +662,97 @@
     color: #2563AA;
   }
   .dim-detail { margin-bottom: 20px; }
+  .dim-detail { margin-bottom: 28px; }
   .dim-detail h4 {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--primary-dark);
-    margin-bottom: 14px;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   .dim-item {
-    margin-bottom: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 24px;
+    padding: 20px;
+    background: #FFFAF5;
+    border-radius: 16px;
+    border: 1px solid var(--border-light);
   }
-  .dim-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .dim-item:last-child { margin-bottom: 0; }
   .dim-item-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
   }
-  .dim-item-name { font-size: 14px; font-weight: 700; }
-  .dim-item-score { font-size: 14px; font-weight: 700; }
+  .dim-item-name { font-size: 15px; font-weight: 800; }
+  .dim-item-score { font-size: 13px; font-weight: 700; }
   .dim-bar-wrap {
     height: 8px;
     background: #F0EBE0;
     border-radius: 4px;
     overflow: hidden;
-    margin-bottom: 6px;
+    margin: 0 0 18px;
   }
   .dim-bar-fill {
     height: 100%;
     border-radius: 3px;
-    transition: width 1s ease;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .dim-bar-fill.high { background: #1FA363; }
   .dim-bar-fill.mid { background: #FF7B1D; }
   .dim-bar-fill.low { background: #E8453C; }
-  .dim-item-body {
-    font-size: 12px;
-    color: var(--text-light);
-    line-height: 1.6;
-  }
-  .dim-subtitle {
-    font-size: 12px;
-    font-weight: 700;
-    margin: 10px 0 4px;
-  }
-  .dim-item-tip {
-    margin-top: 4px;
-    font-size: 12px;
-    color: var(--primary-dark);
-    font-weight: 500;
-  }
-  .path-section {
-    margin-bottom: 16px;
-  }
-  .path-section h4 {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--primary-dark);
+
+  /* 分析层卡片 */
+  .analysis-block {
     margin-bottom: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    line-height: 1.7;
+    font-size: 13px;
+  }
+  .analysis-block:last-child { margin-bottom: 0; }
+  .analysis-block .ab-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .analysis-block .ab-text { color: var(--text-mid); font-size: 13px; }
+  .ab-insight { background: #F0F9FF; border-left: 3px solid #3B82F6; }
+  .ab-root { background: #FFFBF0; border-left: 3px solid #D4AF37; }
+  .ab-risk { background: #FFF5F5; border-left: 3px solid #E8453C; }
+  .ab-solution { background: #F0FDF6; border-left: 3px solid #1FA363; }
+
+  .path-section { margin-bottom: 24px; }
+  .path-section h4 {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   .path-step {
     display: flex;
-    gap: 12px;
-    margin-bottom: 12px;
+    gap: 14px;
+    margin-bottom: 16px;
     align-items: flex-start;
+    background: #FFFEFA;
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 18px;
+    position: relative;
   }
+  .path-step:last-child { margin-bottom: 0; }
   .path-step-num {
-    width: 34px; height: 34px;
+    width: 36px; height: 36px;
     border-radius: 12px;
     background: linear-gradient(135deg, #FF7B1D, #FF9A3C);
     color: #FFF;
@@ -737,23 +760,59 @@
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    font-size: 15px;
+    font-size: 16px;
     flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(255,123,29,0.2);
+    box-shadow: 0 4px 14px rgba(255,123,29,0.25);
   }
-  .path-step-info {
-    flex: 1;
-  }
+  .path-step-info { flex: 1; }
   .path-step-info .step-title {
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .path-step-info .step-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .step-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 11px;
     font-weight: 600;
-    margin-bottom: 2px;
   }
-  .path-step-info .step-desc {
-    font-size: 12px;
-    color: var(--text-light);
-    line-height: 1.5;
+  .step-tag.goal { background: #F0F9FF; color: #2563AA; }
+  .step-tag.method { background: #FFFBF0; color: #B8860B; }
+  .step-tag.kpi { background: #F0FDF6; color: #0D7D44; }
+
+  .core-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+    background: #FFF;
+    border-radius: 14px;
+    padding: 16px;
+    border: 1px solid #FDE8E8;
   }
+  .core-item:last-child { margin-bottom: 0; }
+  .core-num {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    flex-shrink: 0;
+    color: #FFF;
+  }
+  .core-info { flex: 1; }
+  .core-info .core-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .core-info .core-desc { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
   .match-card {
     background: linear-gradient(135deg, #FFF6EE, #FFFBF5);
     border-radius: 16px;
@@ -1799,98 +1858,108 @@ function buildCompleteReportHTML(score) {
   const ageLabel = getAgeLabel();
   const grade = getGradeLabel(totalScore);
 
-  // Build dimension cards
+  // 六维能力详情
   let dimItemsHTML = '';
   dims.forEach(d => {
     dimItemsHTML += `
-    <div class=”dim-item”>
-      <div class=”dim-item-header”>
-        <span class=”dim-item-name”>${d.icon} ${d.name}</span>
-        <span class=”dim-item-score” style=”color:${d.cls==='high'?'#1FA363':d.cls==='mid'?'#FF7B1D':'#E8453C'}”>${d.score}分 · ${d.status}</span>
+    <div class="dim-item">
+      <div class="dim-item-header">
+        <span class="dim-item-name">${d.icon} ${d.name}</span>
+        <span class="dim-item-score" style="color:${d.cls==='high'?'#1FA363':d.cls==='mid'?'#FF7B1D':'#E8453C'}">${d.score}分 · ${d.status}</span>
       </div>
-      <div class=”dim-bar-wrap”>
-        <div class=”dim-bar-fill ${d.cls}” style=”width:${d.score}%”></div>
+      <div class="dim-bar-wrap">
+        <div class="dim-bar-fill ${d.cls}" style="width:${d.score}%"></div>
       </div>
-      <div class=”dim-subtitle” style=”color:${d.cls==='high'?'#1FA363':d.cls==='mid'?'#FF7B1D':'#E8453C'}”>📋 现状解读</div>
-      <div class=”dim-item-body”>${d.analysis}</div>
-      <div class=”dim-subtitle” style=”color:#6B6B6B;”>🔎 深层原因</div>
-      <div class=”dim-item-body”>${d.rootCause}</div>
-      <div class=”dim-subtitle” style=”color:#E8453C;”>⚠️ 如果不干预</div>
-      <div class=”dim-item-body”>${d.risk}</div>
-      <div class=”dim-subtitle” style=”color:var(--primary-dark);”>✅ 针对性提升方案</div>
-      <div class=”dim-item-body”>${d.solution}</div>
+      <div class="analysis-block ab-insight">
+        <div class="ab-label" style="color:#3B82F6;">📋 现状解读</div>
+        <div class="ab-text">${d.analysis}</div>
+      </div>
+      <div class="analysis-block ab-root">
+        <div class="ab-label" style="color:#B8860B;">🔎 深层原因</div>
+        <div class="ab-text">${d.rootCause}</div>
+      </div>
+      <div class="analysis-block ab-risk">
+        <div class="ab-label" style="color:#C0392B;">⚠️ 如果不干预</div>
+        <div class="ab-text">${d.risk}</div>
+      </div>
+      <div class="analysis-block ab-solution">
+        <div class="ab-label" style="color:#0D7D44;">✅ 针对性提升方案</div>
+        <div class="ab-text">${d.solution}</div>
+      </div>
     </div>`;
   });
 
-  // Build core diagnosis
+  // 核心问题诊断
   let coreHTML = '';
   cores.forEach((c, i) => {
     coreHTML += `
-    <div class=”path-step” style=”background:#FFFBF5;padding:12px;border-radius:10px;margin-bottom:8px;”>
-      <div class=”path-step-num” style=”background:${i===0?'#E8453C':'#FF7B1D'};”>${i+1}</div>
-      <div class=”path-step-info”>
-        <div class=”step-title”>${c.title}</div>
-        <div class=”step-desc”>${c.detail}</div>
+    <div class="core-item">
+      <div class="core-num" style="background:${i===0?'#E8453C':'#FF7B1D'};">${i+1}</div>
+      <div class="core-info">
+        <div class="core-title">${c.title}</div>
+        <div class="core-desc">${c.detail}</div>
       </div>
     </div>`;
   });
 
-  // Build learning path
+  // 学习路径
   let stepsHTML = '';
   steps.forEach((s, i) => {
     stepsHTML += `
-    <div class=”path-step”>
-      <div class=”path-step-num”>${i + 1}</div>
-      <div class=”path-step-info”>
-        <div class=”step-title”>${s.title} <span style=”font-size:11px;color:var(--text-light);”>⏱ ${s.time}</span></div>
-        <div class=”step-desc”><b>目标：</b>${s.goal}</div>
-        <div class=”step-desc” style=”margin-top:4px;”><b>方法：</b>${s.method}</div>
-        <div class=”step-desc” style=”margin-top:4px;color:var(--success);”><b>✅ 达标标志：</b>${s.kpi}</div>
+    <div class="path-step">
+      <div class="path-step-num">${i + 1}</div>
+      <div class="path-step-info">
+        <div class="step-title">${s.title} <span style="font-size:12px;color:var(--text-light);font-weight:400;">· ${s.time}</span></div>
+        <div class="step-meta">
+          <span class="step-tag goal">🎯 目标：${s.goal}</span>
+          <span class="step-tag method">📝 方法：${s.method}</span>
+          <span class="step-tag kpi">✅ ${s.kpi}</span>
+        </div>
       </div>
     </div>`;
   });
 
   return `
-  <hr class=”divider”>
-  <div style=”text-align:center;font-size:13px;color:var(--primary);font-weight:700;margin-bottom:12px;”>
+  <hr class="divider">
+  <div style="text-align:center;font-size:13px;color:var(--primary);font-weight:700;margin-bottom:16px;">
     🔓 完整诊断报告已解锁
   </div>
 
-  <div class=”report-header”>
-    <div class=”cert-badge”>🏆 鼎牛阅读 · 正式诊断报告</div>
+  <div class="report-header">
+    <div class="cert-badge">🏆 鼎牛阅读 · 正式诊断报告</div>
     <h3>${grade} · 英语阅读能力深度评估</h3>
-    <div class=”report-id”>诊断编号：${reportId}　|　年龄区间：${ageLabel}　|　${new Date().toLocaleDateString('zh-CN')}</div>
+    <div class="report-id">编号 ${reportId}　｜　${ageLabel}　｜　${new Date().toLocaleDateString('zh-CN')}</div>
   </div>
 
-  <div class=”peer-compare”>
+  <div class="peer-compare">
     <h4>📊 同龄孩子对比区间</h4>
-    <div class=”peer-bar-wrap”>
-      <div class=”peer-bar-fill” style=”width:${peer.pct}%;background:${peer.color};”></div>
-      <div class=”peer-bar-marker” style=”left:${peer.pct}%;”></div>
+    <div class="peer-bar-wrap">
+      <div class="peer-bar-fill" style="width:${peer.pct}%;background:${peer.color};"></div>
+      <div class="peer-bar-marker" style="left:${peer.pct}%;"></div>
     </div>
-    <div class=”peer-labels”><span>后50%</span><span>中等</span><span>前25%</span><span>前10%</span></div>
-    <div class=”peer-rank”>在 <b>${ageLabel}</b> 同龄孩子中，您的孩子处于 <b style=”color:${peer.color};”>${peer.label}</b> 区间</div>
-    <div style=”font-size:12px;color:var(--text-light);margin-top:6px;line-height:1.6;”>此对比基于英语阅读能力的6个核心维度综合评估。同龄数据参考了全国30万+样本的分布区间。请注意：排名高低不代表孩子的好坏——它只是帮您看清当下所处的位置，为下一步行动提供方向。</div>
+    <div class="peer-labels"><span>后50%</span><span>中等</span><span>前25%</span><span>前10%</span></div>
+    <div class="peer-rank">在 <b>${ageLabel}</b> 同龄孩子中，您的孩子处于 <b style="color:${peer.color};">${peer.label}</b> 区间</div>
+    <div style="font-size:12px;color:var(--text-light);margin-top:8px;line-height:1.6;">基于全国30万+样本的6维度综合评估。排名高低不代表优劣——帮您看清当下位置，为下一步提供方向。</div>
   </div>
 
-  <div class=”dim-detail” style=”background:#FFFBF5;border-radius:14px;padding:16px;margin-bottom:16px;border:1px solid #FDE8E8;”>
+  <div class="dim-detail">
     <h4>🚨 核心问题诊断</h4>
     ${coreHTML}
   </div>
 
-  <div class=”dim-detail”>
+  <div class="dim-detail">
     <h4>🔬 六维能力深度解析</h4>
     ${dimItemsHTML}
   </div>
 
-  <div class=”path-section”>
+  <div class="path-section">
     <h4>🗺️ 专属学习路径规划</h4>
-    <p style=”font-size:12px;color:var(--text-light);margin-bottom:12px;”>以下路径根据孩子的诊断结果量身定制。每个阶段都包含目标、方法和可验证的达标标志——让您不只是“感觉孩子进步了”，而是能清晰地看到进步的刻度。</p>
+    <p style="font-size:13px;color:var(--text-light);margin-bottom:18px;line-height:1.6;">以下路径根据诊断结果量身定制，每阶段都可验证——让进步看得见。</p>
     ${stepsHTML}
   </div>
 
-  <button class=”btn-print” onclick=”printReport()”>🖨️ 打印完整报告 / 保存为PDF</button>
-  <p style=”font-size:11px;color:#BBB;text-align:center;margin-bottom:12px;”>建议打印后贴在学习桌前，作为阶段路线图参考</p>
+  <button class="btn-print" onclick="printReport()">🖨️ 打印报告 / 保存为PDF</button>
+  <p style="font-size:11px;color:#BBB;text-align:center;margin-bottom:16px;">建议贴在学习桌前，作为阶段路线图</p>
   `;
 }
 
