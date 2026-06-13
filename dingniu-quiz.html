@@ -1193,7 +1193,7 @@ function renderQuestion(idx) {
     ${pictureHTML}
     ${optionsHTML}
     <div class="btn-row">
-      ${!isFirst ? '<button class="btn btn-prev" onclick="prevQ()">上一题</button>' : ''}
+      ${idx > 1 ? '<button class="btn btn-prev" onclick="prevQ()">上一题</button>' : ''}
       <button class="btn btn-next${!isFirst ? '' : ' btn-full'}" id="btnNext" onclick="nextQ()" ${hasAnswer ? '' : 'disabled'}>
         ${idx === 0 ? '继续 →' : idx < questions.length - 1 ? '下一题 →' : '查看诊断结果'}
       </button>
