@@ -587,232 +587,307 @@
   .hidden { display: none !important; }
 
   /* ===== Complete Report ===== */
-  .report-header {
+  .report-wrap { text-align: left; }
+
+  .rpt-hero {
     text-align: center;
-    padding: 24px 20px;
-    border: 2px solid #D4AF37;
-    border-radius: 18px;
-    background: linear-gradient(160deg, #FFFEF8, #FFF9E6, #FFFDF3);
+    padding: 28px 20px;
+    background: linear-gradient(160deg, #FFFDF6, #FFF8E6);
+    border-radius: 20px;
     margin-bottom: 24px;
-    position: relative;
+    border: 2px solid #E8D5A0;
   }
-  .report-header .cert-badge {
+  .rpt-hero .rpt-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #C8960C, #E0C050);
+    background: linear-gradient(135deg, #B8860B, #D4AF37);
     color: #FFF;
-    padding: 5px 18px;
+    padding: 6px 20px;
     border-radius: 20px;
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
-  .report-header h3 { font-size: 19px; font-weight: 800; margin: 10px 0 6px; }
-  .report-header .report-id {
-    font-size: 11px;
-    color: #B0A890;
-    font-family: monospace;
+  .rpt-hero h2 { font-size: 20px; font-weight: 900; margin: 0 0 4px; }
+  .rpt-hero .rpt-meta {
+    font-size: 12px;
+    color: #A09070;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
   }
-  .peer-compare {
-    background: #F5F9FF;
-    border-radius: 16px;
-    padding: 20px 18px;
-    margin-bottom: 20px;
-    border: 1px solid #D8E8FC;
+
+  .rpt-section {
+    margin-bottom: 28px;
   }
-  .peer-compare h4 {
-    font-size: 15px;
-    font-weight: 700;
-    color: #2563AA;
-    margin-bottom: 14px;
+  .rpt-section-title {
+    font-size: 16px;
+    font-weight: 800;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #F0EBE0;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
-  .peer-bar-wrap {
+
+  /* Peer bar */
+  .rpt-peer {
+    background: #F8FAFD;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 28px;
+    border: 1px solid #E5EDF8;
+  }
+  .rpt-peer-title { font-size: 14px; font-weight: 700; color: #2563AA; margin-bottom: 14px; }
+  .rpt-peer-bar {
+    height: 12px;
+    background: linear-gradient(90deg, #E8EDF4 0%, #D5E5F5 50%, #B8D8F0 75%, #8EC5E8 90%);
+    border-radius: 6px;
     position: relative;
-    height: 32px;
-    background: #E8EDF4;
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 8px;
+    margin: 16px 0 8px;
   }
-  .peer-bar-fill {
-    height: 100%;
-    border-radius: 16px;
-    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .peer-bar-marker {
+  .rpt-peer-marker {
     position: absolute;
-    top: -3px;
-    width: 4px;
-    height: 38px;
-    background: #E8453C;
-    border-radius: 2px;
+    top: -5px;
+    width: 6px; height: 22px;
+    border-radius: 3px;
     transform: translateX(-50%);
   }
-  .peer-labels {
+  .rpt-peer-labels {
     display: flex;
     justify-content: space-between;
     font-size: 11px;
-    color: var(--text-light);
+    color: #A0A0A0;
   }
-  .peer-rank {
+  .rpt-peer-result {
     text-align: center;
-    margin-top: 10px;
-    font-size: 16px;
+    margin-top: 12px;
+    font-size: 14px;
     font-weight: 700;
     color: #2563AA;
   }
-  .dim-detail { margin-bottom: 20px; }
-  .dim-detail { margin-bottom: 28px; }
-  .dim-detail h4 {
-    font-size: 17px;
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 18px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--border-light);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .dim-item {
-    margin-bottom: 24px;
-    padding: 20px;
-    background: #FFFAF5;
-    border-radius: 16px;
-    border: 1px solid var(--border-light);
-  }
-  .dim-item:last-child { margin-bottom: 0; }
-  .dim-item-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  .dim-item-name { font-size: 15px; font-weight: 800; }
-  .dim-item-score { font-size: 13px; font-weight: 700; }
-  .dim-bar-wrap {
-    height: 8px;
-    background: #F0EBE0;
-    border-radius: 4px;
-    overflow: hidden;
-    margin: 0 0 18px;
-  }
-  .dim-bar-fill {
-    height: 100%;
-    border-radius: 3px;
-    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .dim-bar-fill.high { background: #1FA363; }
-  .dim-bar-fill.mid { background: #FF7B1D; }
-  .dim-bar-fill.low { background: #E8453C; }
 
-  /* 分析层卡片 */
-  .analysis-block {
-    margin-bottom: 12px;
-    padding: 14px 16px;
-    border-radius: 12px;
-    line-height: 1.7;
-    font-size: 13px;
-  }
-  .analysis-block:last-child { margin-bottom: 0; }
-  .analysis-block .ab-label {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    margin-bottom: 6px;
-  }
-  .analysis-block .ab-text { color: var(--text-mid); font-size: 13px; }
-  .ab-insight { background: #F0F9FF; border-left: 3px solid #3B82F6; }
-  .ab-root { background: #FFFBF0; border-left: 3px solid #D4AF37; }
-  .ab-risk { background: #FFF5F5; border-left: 3px solid #E8453C; }
-  .ab-solution { background: #F0FDF6; border-left: 3px solid #1FA363; }
-
-  .path-section { margin-bottom: 24px; }
-  .path-section h4 {
-    font-size: 17px;
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 18px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--border-light);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .path-step {
+  /* Core diagnosis */
+  .rpt-core-item {
     display: flex;
     gap: 14px;
-    margin-bottom: 16px;
+    padding: 16px;
+    background: #FFFBF8;
+    border-radius: 14px;
+    margin-bottom: 10px;
+    border: 1px solid #F5E8D8;
     align-items: flex-start;
-    background: #FFFEFA;
-    border: 1px solid var(--border-light);
-    border-radius: 16px;
-    padding: 18px;
-    position: relative;
   }
-  .path-step:last-child { margin-bottom: 0; }
-  .path-step-num {
-    width: 36px; height: 36px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #FF7B1D, #FF9A3C);
+  .rpt-core-num {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    font-size: 13px; font-weight: 800;
     color: #FFF;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 800;
-    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .rpt-core-body { flex: 1; }
+  .rpt-core-body .rpt-core-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .rpt-core-body .rpt-core-desc { font-size: 13px; color: var(--text-mid); line-height: 1.8; }
+
+  /* Dimension cards */
+  .rpt-dim-card {
+    background: #FFFEFA;
+    border: 1px solid #F0EBE0;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .rpt-dim-card:last-child { margin-bottom: 0; }
+  .rpt-dim-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .rpt-dim-name { font-size: 15px; font-weight: 800; }
+  .rpt-dim-score { font-size: 13px; font-weight: 700; }
+  .rpt-dim-bar {
+    height: 6px;
+    background: #F0EBE0;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .rpt-dim-bar-inner { height: 100%; border-radius: 3px; transition: width 1.2s ease; }
+
+  .rpt-layer {
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text-mid);
+  }
+  .rpt-layer:last-child { margin-bottom: 0; }
+  .rpt-layer-label {
+    font-size: 11px; font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .rpt-layer-insight { background: #F5F9FF; border-left: 3px solid #3B82F6; }
+  .rpt-layer-root   { background: #FFFCF0; border-left: 3px solid #D4AF37; }
+  .rpt-layer-risk   { background: #FFF5F5; border-left: 3px solid #E8453C; }
+  .rpt-layer-fix    { background: #F0FDF6; border-left: 3px solid #1FA363; }
+
+  /* Learning path */
+  .rpt-path-card {
+    background: #FFFEFA;
+    border: 1px solid #F0EBE0;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .rpt-path-card:last-child { margin-bottom: 0; }
+  .rpt-path-num {
+    width: 40px; height: 40px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #FF7B1D, #FF9A3C);
+    color: #FFF;
+    font-size: 17px; font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
     box-shadow: 0 4px 14px rgba(255,123,29,0.25);
   }
-  .path-step-info { flex: 1; }
-  .path-step-info .step-title {
+  .rpt-path-body { flex: 1; }
+  .rpt-path-title {
     font-size: 15px;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     line-height: 1.4;
   }
-  .path-step-info .step-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 8px;
-  }
-  .step-tag {
+  .rpt-path-time {
     display: inline-block;
-    padding: 3px 10px;
-    border-radius: 8px;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 3px 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
   }
-  .step-tag.goal { background: #F0F9FF; color: #2563AA; }
-  .step-tag.method { background: #FFFBF0; color: #B8860B; }
-  .step-tag.kpi { background: #F0FDF6; color: #0D7D44; }
+  .rpt-path-row {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-mid);
+    margin-bottom: 6px;
+  }
+  .rpt-path-row:last-child { margin-bottom: 0; }
+  .rpt-path-row b { color: var(--text); }
 
-  .core-item {
-    display: flex;
-    gap: 14px;
-    margin-bottom: 14px;
-    align-items: flex-start;
-    background: #FFF;
-    border-radius: 14px;
-    padding: 16px;
-    border: 1px solid #FDE8E8;
+  /* ===== Share Banner in Result ===== */
+  .share-banner {
+    background: linear-gradient(135deg, #E6F9F0, #D2F5E3);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    cursor: pointer;
+    border: 2px dashed #1FA363;
+    transition: all 0.2s;
   }
-  .core-item:last-child { margin-bottom: 0; }
-  .core-num {
-    width: 30px; height: 30px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .share-banner:active { transform: scale(0.97); }
+  .share-banner .banner-title {
+    font-size: 16px;
     font-weight: 800;
-    font-size: 14px;
-    flex-shrink: 0;
-    color: #FFF;
+    color: #0D7D44;
+    margin-bottom: 6px;
   }
-  .core-info { flex: 1; }
-  .core-info .core-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-  .core-info .core-desc { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+  .share-banner .banner-sub {
+    font-size: 13px;
+    color: #1FA363;
+  }
+
+  /* ===== Start Page ===== */
+  .start-page {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    padding: 8px 0;
+  }
+  .start-icon {
+    font-size: 88px;
+    margin-bottom: 24px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));
+  }
+  .start-title {
+    font-size: 27px;
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+  .start-title .hl {
+    background: linear-gradient(135deg, #FF7B1D, #E06900);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .start-subtitle {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+  .btn-start {
+    width: 100%;
+    padding: 18px;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 800;
+    border: none;
+    background: linear-gradient(135deg, #FF7B1D, #FF9A3C);
+    color: #FFF;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 32px rgba(255,123,29,0.35);
+    transition: all 0.2s;
+  }
+  .btn-start:active { transform: scale(0.97); }
+
+  .features-row {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 28px;
+  }
+  .feature-item {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+  .feature-item .icon {
+    display: block;
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    text-align: center;
+    padding: 28px 0;
+    font-size: 11px;
+    color: #C5BFB5;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== Hidden ===== */
+  .hidden { display: none !important; }
+
   .match-card {
     background: linear-gradient(135deg, #FFF6EE, #FFFBF5);
     border-radius: 16px;
@@ -1602,7 +1677,7 @@ function trackShare() {
     renderResult(totalScore);
     // Flash the report header
     setTimeout(() => {
-      const header = document.querySelector('.report-header');
+      const header = document.querySelector('.rpt-hero');
       if (header) header.classList.add('unlock-flash');
     }, 400);
   }
@@ -1862,29 +1937,29 @@ function buildCompleteReportHTML(score) {
   let dimItemsHTML = '';
   dims.forEach(d => {
     dimItemsHTML += `
-    <div class="dim-item">
-      <div class="dim-item-header">
-        <span class="dim-item-name">${d.icon} ${d.name}</span>
-        <span class="dim-item-score" style="color:${d.cls==='high'?'#1FA363':d.cls==='mid'?'#FF7B1D':'#E8453C'}">${d.score}分 · ${d.status}</span>
+    <div class="rpt-dim-card">
+      <div class="rpt-dim-top">
+        <span class="rpt-dim-name">${d.icon} ${d.name}</span>
+        <span class="rpt-dim-score" style="color:${d.cls==='high'?'#1FA363':d.cls==='mid'?'#FF7B1D':'#E8453C'}">${d.score}分 · ${d.status}</span>
       </div>
-      <div class="dim-bar-wrap">
-        <div class="dim-bar-fill ${d.cls}" style="width:${d.score}%"></div>
+      <div class="rpt-dim-bar">
+        <div class="rpt-dim-bar-inner" style="width:${d.score}%;background:${d.cls==='high'?'#1FA363':d.cls==='mid'?'#FF7B1D':'#E8453C'};"></div>
       </div>
-      <div class="analysis-block ab-insight">
-        <div class="ab-label" style="color:#3B82F6;">📋 现状解读</div>
-        <div class="ab-text">${d.analysis}</div>
+      <div class="rpt-layer rpt-layer-insight">
+        <div class="rpt-layer-label" style="color:#3B82F6;">📋 现状解读</div>
+        ${d.analysis}
       </div>
-      <div class="analysis-block ab-root">
-        <div class="ab-label" style="color:#B8860B;">🔎 深层原因</div>
-        <div class="ab-text">${d.rootCause}</div>
+      <div class="rpt-layer rpt-layer-root">
+        <div class="rpt-layer-label" style="color:#B8860B;">🔎 深层原因</div>
+        ${d.rootCause}
       </div>
-      <div class="analysis-block ab-risk">
-        <div class="ab-label" style="color:#C0392B;">⚠️ 如果不干预</div>
-        <div class="ab-text">${d.risk}</div>
+      <div class="rpt-layer rpt-layer-risk">
+        <div class="rpt-layer-label" style="color:#C0392B;">⚠️ 如果不干预</div>
+        ${d.risk}
       </div>
-      <div class="analysis-block ab-solution">
-        <div class="ab-label" style="color:#0D7D44;">✅ 针对性提升方案</div>
-        <div class="ab-text">${d.solution}</div>
+      <div class="rpt-layer rpt-layer-fix">
+        <div class="rpt-layer-label" style="color:#0D7D44;">✅ 提升方案</div>
+        ${d.solution}
       </div>
     </div>`;
   });
@@ -1893,11 +1968,11 @@ function buildCompleteReportHTML(score) {
   let coreHTML = '';
   cores.forEach((c, i) => {
     coreHTML += `
-    <div class="core-item">
-      <div class="core-num" style="background:${i===0?'#E8453C':'#FF7B1D'};">${i+1}</div>
-      <div class="core-info">
-        <div class="core-title">${c.title}</div>
-        <div class="core-desc">${c.detail}</div>
+    <div class="rpt-core-item">
+      <div class="rpt-core-num" style="background:${i===0?'#E8453C':'#FF7B1D'};">${i+1}</div>
+      <div class="rpt-core-body">
+        <div class="rpt-core-title">${c.title}</div>
+        <div class="rpt-core-desc">${c.detail}</div>
       </div>
     </div>`;
   });
@@ -1906,60 +1981,60 @@ function buildCompleteReportHTML(score) {
   let stepsHTML = '';
   steps.forEach((s, i) => {
     stepsHTML += `
-    <div class="path-step">
-      <div class="path-step-num">${i + 1}</div>
-      <div class="path-step-info">
-        <div class="step-title">${s.title} <span style="font-size:12px;color:var(--text-light);font-weight:400;">· ${s.time}</span></div>
-        <div class="step-meta">
-          <span class="step-tag goal">🎯 目标：${s.goal}</span>
-          <span class="step-tag method">📝 方法：${s.method}</span>
-          <span class="step-tag kpi">✅ ${s.kpi}</span>
-        </div>
+    <div class="rpt-path-card">
+      <div class="rpt-path-num">${i + 1}</div>
+      <div class="rpt-path-body">
+        <div class="rpt-path-title">${s.title}</div>
+        <div class="rpt-path-time">⏱ ${s.time}</div>
+        <div class="rpt-path-row"><b>目标：</b>${s.goal}</div>
+        <div class="rpt-path-row"><b>方法：</b>${s.method}</div>
+        <div class="rpt-path-row"><b>达标：</b>${s.kpi}</div>
       </div>
     </div>`;
   });
 
   return `
-  <hr class="divider">
-  <div style="text-align:center;font-size:13px;color:var(--primary);font-weight:700;margin-bottom:16px;">
-    🔓 完整诊断报告已解锁
-  </div>
-
-  <div class="report-header">
-    <div class="cert-badge">🏆 鼎牛阅读 · 正式诊断报告</div>
-    <h3>${grade} · 英语阅读能力深度评估</h3>
-    <div class="report-id">编号 ${reportId}　｜　${ageLabel}　｜　${new Date().toLocaleDateString('zh-CN')}</div>
-  </div>
-
-  <div class="peer-compare">
-    <h4>📊 同龄孩子对比区间</h4>
-    <div class="peer-bar-wrap">
-      <div class="peer-bar-fill" style="width:${peer.pct}%;background:${peer.color};"></div>
-      <div class="peer-bar-marker" style="left:${peer.pct}%;"></div>
+  <div class="report-wrap">
+    <hr class="divider">
+    <div style="text-align:center;font-size:13px;color:var(--primary);font-weight:700;margin-bottom:16px;">
+      🔓 分享成功 · 完整诊断报告已解锁
     </div>
-    <div class="peer-labels"><span>后50%</span><span>中等</span><span>前25%</span><span>前10%</span></div>
-    <div class="peer-rank">在 <b>${ageLabel}</b> 同龄孩子中，您的孩子处于 <b style="color:${peer.color};">${peer.label}</b> 区间</div>
-    <div style="font-size:12px;color:var(--text-light);margin-top:8px;line-height:1.6;">基于全国30万+样本的6维度综合评估。排名高低不代表优劣——帮您看清当下位置，为下一步提供方向。</div>
-  </div>
 
-  <div class="dim-detail">
-    <h4>🚨 核心问题诊断</h4>
-    ${coreHTML}
-  </div>
+    <div class="rpt-hero">
+      <div class="rpt-badge">鼎牛阅读 · 正式诊断报告</div>
+      <h2>${grade}</h2>
+      <div class="rpt-meta">编号 ${reportId}　｜　${ageLabel}　｜　${new Date().toLocaleDateString('zh-CN')}</div>
+    </div>
 
-  <div class="dim-detail">
-    <h4>🔬 六维能力深度解析</h4>
-    ${dimItemsHTML}
-  </div>
+    <div class="rpt-peer">
+      <div class="rpt-peer-title">📊 同龄孩子对比区间</div>
+      <div class="rpt-peer-bar">
+        <div class="rpt-peer-marker" style="left:${peer.pct}%;background:${peer.color};"></div>
+      </div>
+      <div class="rpt-peer-labels"><span>后50%</span><span>中等</span><span>前25%</span><span>前10%</span></div>
+      <div class="rpt-peer-result">在 <b>${ageLabel}</b> 同龄孩子中，您的孩子处于 <b style="color:${peer.color};">${peer.label}</b> 区间</div>
+      <div style="font-size:12px;color:var(--text-light);margin-top:8px;line-height:1.6;">基于全国30万+样本的6维度综合评估，帮助定位当下水平、明确提升方向。</div>
+    </div>
 
-  <div class="path-section">
-    <h4>🗺️ 专属学习路径规划</h4>
-    <p style="font-size:13px;color:var(--text-light);margin-bottom:18px;line-height:1.6;">以下路径根据诊断结果量身定制，每阶段都可验证——让进步看得见。</p>
-    ${stepsHTML}
-  </div>
+    <div class="rpt-section">
+      <div class="rpt-section-title">🚨 核心问题诊断</div>
+      ${coreHTML}
+    </div>
 
-  <button class="btn-print" onclick="printReport()">🖨️ 打印报告 / 保存为PDF</button>
-  <p style="font-size:11px;color:#BBB;text-align:center;margin-bottom:16px;">建议贴在学习桌前，作为阶段路线图</p>
+    <div class="rpt-section">
+      <div class="rpt-section-title">🔬 六维能力深度解析</div>
+      ${dimItemsHTML}
+    </div>
+
+    <div class="rpt-section">
+      <div class="rpt-section-title">🗺️ 专属学习路径规划</div>
+      <div class="rpt-section-subtitle">根据诊断结果量身定制，每阶段设有可验证的达标标志——让进步看得见。</div>
+      ${stepsHTML}
+    </div>
+
+    <button class="btn-print" onclick="printReport()">🖨️ 打印报告 / 保存为 PDF</button>
+    <p style="font-size:11px;color:#BBB;text-align:center;margin-bottom:16px;">建议贴在学习桌前，作为阶段路线图</p>
+  </div>
   `;
 }
 
