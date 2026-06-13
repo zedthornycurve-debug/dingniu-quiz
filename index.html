@@ -860,148 +860,257 @@
 
 <script>
 // ===== QUESTION DATA =====
-const questions = [
-  {
-    id: 1,
-    section: '板块一 · 黄金期诊断',
-    title: '孩子今年几岁了？',
-    hint: '不同年龄段，英语学习的重点完全不同',
-    type: 'single',
-    options: [
-      { letter: 'A', text: '3–4岁', score: 5 },
-      { letter: 'B', text: '5–6岁', score: 10 },
-      { letter: 'C', text: '7–8岁', score: 10 },
-      { letter: 'D', text: '9–12岁', score: 5 },
-      { letter: 'E', text: '12岁以上', score: 0 }
-    ]
-  },
-  {
-    id: 2,
-    section: '板块一 · 黄金期诊断',
-    title: '孩子几岁开始接触英语？',
-    hint: '语言学习的“布罗卡斯区”3–8岁最活跃',
-    type: 'single',
-    options: [
-      { letter: 'A', text: '还没开始', score: 0 },
-      { letter: 'B', text: '3岁以前开始', score: 10 },
-      { letter: 'C', text: '4–6岁开始', score: 5 },
-      { letter: 'D', text: '小学一年级以后才开始', score: 0 }
-    ]
-  },
-  {
-    id: 3,
-    section: '板块二 · 能力现状检测',
-    title: '孩子看到单词「cat」，是什么反应？',
-    hint: '这道题测的是“解码能力”——见词能读',
-    type: 'single',
-    options: [
-      { letter: 'A', text: '能直接读出来，知道是“猫”', score: 10 },
-      { letter: 'B', text: '需要想一下，一个个字母拼：c-a-t → cat', score: 5 },
-      { letter: 'C', text: '不认识、读不出来', score: 0 }
-    ]
-  },
-  {
-    id: 4,
-    section: '板块二 · 能力现状检测',
-    title: '孩子看到句子「The cat sat on the mat.」，是什么反应？',
-    hint: '这题最关键——70%的孩子会读词但读不懂句子',
-    type: 'single',
-    options: [
-      { letter: 'A', text: '能流利读出来，而且知道整句意思', score: 10 },
-      { letter: 'B', text: '能读单个词，但读完不知道这句话在说什么', score: 5 },
-      { letter: 'C', text: '直接说“看不懂，太难了”', score: 0 }
-    ]
-  },
-  {
-    id: 5,
-    section: '板块二 · 能力现状检测',
-    title: '孩子读英语时，通常是什么状态？',
-    hint: '学习状态决定学习效果',
-    type: 'single',
-    options: [
-      { letter: 'A', text: '主动拿书读，越读越开心', score: 10 },
-      { letter: 'B', text: '要催才读，读几分钟就分心走神', score: 5 },
-      { letter: 'C', text: '抗拒抵触，一说英语就想跑', score: 0 }
-    ]
-  },
-  {
-    id: 6,
-    section: '🧒 让孩子试试',
-    title: '请把手机给孩子，让TA看看这张图，选出正确的单词',
-    hint: '这道题让孩子直接参与，测的是“见词识图”能力',
-    type: 'picture',
-    picture: '🐱',
-    options: [
-      { letter: 'A', text: 'dog', score: 0 },
-      { letter: 'B', text: 'cat', score: 10 },
-      { letter: 'C', text: 'pig', score: 0 },
-      { letter: 'D', text: 'hat', score: 0 }
-    ]
-  },
-  {
-    id: 7,
-    section: '板块三 · 隐藏问题排查',
-    title: '以下哪些情况符合你家孩子？（多选）',
-    hint: '选中的每一项，都是孩子英语路上的“绊脚石”',
-    type: 'multi',
-    options: [
-      { letter: '', text: '单词今天背了明天就忘', deduct: 3 },
-      { letter: '', text: '发音不标准，带有中文口音', deduct: 3 },
-      { letter: '', text: '能读课文，但考试阅读理解总丢分', deduct: 3 },
-      { letter: '', text: '学了1年以上还是不敢开口说英语', deduct: 3 },
-      { letter: '', text: '一写单词就拼错', deduct: 3 }
-    ],
-    maxDeduct: 15
-  },
-  {
-    id: 8,
-    section: '板块三 · 隐藏问题排查',
-    title: '你知道2024年秋季小学英语教材改版后，三年级第一单元对孩子的要求是什么吗？',
-    hint: '新课标变化很大，很多家长还不清楚',
-    type: 'single',
-    options: [
-      { letter: 'A', text: '知道，已经在帮孩子做准备', score: 10 },
-      { letter: 'B', text: '听说改了，但不清楚具体改了什么', score: 5 },
-      { letter: 'C', text: '完全不知道改了啥', score: 0 }
-    ]
-  },
-  {
-    id: 9,
-    section: '板块三 · 隐藏问题排查',
-    title: '孩子现在上的英语课/用的APP，主要教什么？',
-    hint: '搞清现状，才能找准问题',
-    type: 'single',
-    options: [
-      { letter: 'A', text: '系统的拼读+阅读训练，有真人老师跟进指导', score: 10 },
-      { letter: 'B', text: '唱唱跳跳磨耳朵，或者单纯刷单词App', score: 5 },
-      { letter: 'C', text: '没上任何课 / 觉得学校教的就够了', score: 0 }
-    ]
-  },
-  {
-    id: 10,
-    section: '板块四 · 家长投入度',
-    title: '你每天陪孩子学英语的时间是？',
-    hint: '不是考察你——是为了帮你找到最省心的方案',
-    type: 'single',
-    options: [
-      { letter: 'A', text: '30分钟以上，有固定计划', score: 10 },
-      { letter: 'B', text: '10–30分钟，随缘安排', score: 5 },
-      { letter: 'C', text: '基本没时间 / 全靠孩子自己', score: 0 }
-    ]
-  },
-  {
-    id: 11,
-    section: '板块四 · 家长投入度',
-    title: '你对孩子英语的期望是？',
-    hint: '目标不同，路径完全不同',
-    type: 'single',
-    options: [
-      { letter: 'A', text: '能自主阅读英文绘本和章节书，真正把英语用起来', score: 10 },
-      { letter: 'B', text: '学校考试别拖后腿就行', score: 5 },
-      { letter: 'C', text: '还没认真想过 / 不敢想太远', score: 0 }
-    ]
-  }
-];
+// Q1 (age) is always first. After it's answered, we build the rest based on age group.
+const ageQuestion = {
+  id: 1,
+  section: '板块一 · 黄金期诊断',
+  title: '孩子今年几岁了？',
+  hint: '不同年龄段，英语学习的重点完全不同',
+  type: 'single',
+  options: [
+    { letter: 'A', text: '3–4岁', score: 5 },
+    { letter: 'B', text: '5–6岁', score: 10 },
+    { letter: 'C', text: '7–8岁', score: 10 },
+    { letter: 'D', text: '9–12岁', score: 5 },
+    { letter: 'E', text: '12岁以上', score: 0 }
+  ]
+};
+
+function getAgeGroup(optIndex) {
+  if (optIndex === 0) return '3-4';
+  if (optIndex === 1) return '5-6';
+  if (optIndex === 2) return '7-8';
+  return '9-12'; // includes “12岁以上”
+}
+
+// Age-specific question banks. IDs 2-11 are consistent across groups
+// so scoring (which references answers[id]) works for all ages.
+const ageQuestionBanks = {
+
+  '3-4': [
+    { id:2, section:'板块一 · 黄金期诊断', title:'孩子接触过英语吗？', hint:'先搞清楚起点', type:'single', options:[
+      { letter:'A', text:'经常接触（儿歌、动画、绘本都有）', score:10 },
+      { letter:'B', text:'偶尔听过英文儿歌或看过动画片', score:5 },
+      { letter:'C', text:'几乎没接触过英语', score:0 }
+    ]},
+    { id:3, section:'板块一 · 黄金期诊断', title:'孩子看到字母A、B、C，知道这是“英文字母”吗？', hint:'这是自然拼读的起点——字母意识', type:'single', options:[
+      { letter:'A', text:'认识，能说出几个字母的发音', score:10 },
+      { letter:'B', text:'见过，但不太分得清英文和拼音', score:5 },
+      { letter:'C', text:'完全不知道什么是英文字母', score:0 }
+    ]},
+    { id:4, section:'板块一 · 黄金期诊断', title:'你跟孩子说简单的英语单词（如apple、cat），TA能跟着模仿发音吗？', hint:'测的是语音模仿能力——语言黄金期的核心指标', type:'single', options:[
+      { letter:'A', text:'能！而且发音还挺标准的', score:10 },
+      { letter:'B', text:'愿意跟着说，但发音不太准', score:5 },
+      { letter:'C', text:'不愿意跟说 / 完全说不出来', score:0 }
+    ]},
+    { id:5, section:'板块一 · 黄金期诊断', title:'你拿出英语绘本，孩子的反应是？', hint:'阅读兴趣，从娃娃抓起', type:'single', options:[
+      { letter:'A', text:'主动凑过来，指着图画问“这是什么”', score:10 },
+      { letter:'B', text:'愿意看一会儿，但很快就不耐烦跑开了', score:5 },
+      { letter:'C', text:'直接把书推开 / 只要中文的不要英文的', score:0 }
+    ]},
+    { id:6, section:'🧒 让孩子试试', title:'请把手机给孩子，让TA看看这张图，问问TA这是什么动物？', hint:'测的是“听音识图”能力——孩子不需要认识单词，只需要听懂并指出', type:'picture', picture:'🐱', options:[
+      { letter:'A', text:'孩子指出了猫（或说出了“猫/猫咪”）', score:10 },
+      { letter:'B', text:'孩子犹豫了一会儿才指出来', score:5 },
+      { letter:'C', text:'孩子不知道 / 指错了', score:0 }
+    ]},
+    { id:7, section:'板块二 · 启蒙障碍排查', title:'以下哪些情况比较符合你家的实际情况？（多选）', hint:'选中的每一项，都是启蒙路上的“拦路虎”', type:'multi', options:[
+      { letter:'', text:'孩子注意力短，坐不住3分钟就跑', deduct:3 },
+      { letter:'', text:'孩子中文太强势，抗拒一切非中文的内容', deduct:3 },
+      { letter:'', text:'家里老人带孩子为主，没有英语环境', deduct:3 },
+      { letter:'', text:'自己英语不太好，不知道从哪开始教', deduct:3 },
+      { letter:'', text:'试过一些方法但孩子都不感兴趣', deduct:3 }
+    ], maxDeduct:15 },
+    { id:8, section:'板块二 · 启蒙障碍排查', title:'你知道3-6岁是语言学习的“黄金期”吗？', hint:'了解黄金期是科学启蒙的第一步', type:'single', options:[
+      { letter:'A', text:'知道，而且已经在抓住黄金期系统启蒙', score:10 },
+      { letter:'B', text:'听过“黄金期”这个说法，但不太清楚具体为什么重要', score:5 },
+      { letter:'C', text:'完全没听说过 / 觉得孩子还小不用着急', score:0 }
+    ]},
+    { id:9, section:'板块三 · 当前方法', title:'孩子现在有接触英语的方式是？', hint:'搞清现状，才能找准方向', type:'single', options:[
+      { letter:'A', text:'有系统的英语启蒙课程或APP，家长每天陪伴', score:10 },
+      { letter:'B', text:'偶尔看看英文动画片或听听儿歌，没有固定安排', score:5 },
+      { letter:'C', text:'还没开始任何英语相关的活动', score:0 }
+    ]},
+    { id:10, section:'板块四 · 家长投入度', title:'你每周陪孩子接触英语的频率是？', hint:'不是考察你——是为了找到最省心的方案', type:'single', options:[
+      { letter:'A', text:'每天都有固定时间陪孩子接触英语', score:10 },
+      { letter:'B', text:'一周2-3次，时间不固定，随缘安排', score:5 },
+      { letter:'C', text:'基本没时间 / 全靠孩子自己或幼儿园', score:0 }
+    ]},
+    { id:11, section:'板块四 · 家长投入度', title:'你对孩子英语的期望是？', hint:'目标不同，路径完全不同', type:'single', options:[
+      { letter:'A', text:'希望孩子从小建立英语思维，将来能自主阅读英文书', score:10 },
+      { letter:'B', text:'能对英语有兴趣就行，别像我一样学成“哑巴英语”', score:5 },
+      { letter:'C', text:'还没认真想过 / 走一步看一步', score:0 }
+    ]}
+  ],
+
+  '5-6': [
+    { id:2, section:'板块一 · 黄金期诊断', title:'孩子几岁开始接触英语？', hint:'语言学习的“布罗卡斯区”3–8岁最活跃', type:'single', options:[
+      { letter:'A', text:'3岁以前就开始接触了', score:10 },
+      { letter:'B', text:'4–5岁开始接触', score:5 },
+      { letter:'C', text:'还没正式开始', score:0 }
+    ]},
+    { id:3, section:'板块二 · 能力现状检测', title:'孩子看到单词「cat」，是什么反应？', hint:'这道题测的是“解码能力”——见词能读', type:'single', options:[
+      { letter:'A', text:'能直接读出来，知道是“猫”', score:10 },
+      { letter:'B', text:'需要想一下，一个个字母拼：c-a-t → cat', score:5 },
+      { letter:'C', text:'不认识、读不出来', score:0 }
+    ]},
+    { id:4, section:'板块二 · 能力现状检测', title:'孩子看到句子「The cat sat on the mat.」，是什么反应？', hint:'这题最关键——70%的孩子会读词但读不懂句子', type:'single', options:[
+      { letter:'A', text:'能流利读出来，而且知道整句意思', score:10 },
+      { letter:'B', text:'能读单个词，但读完不知道这句话在说什么', score:5 },
+      { letter:'C', text:'直接说“看不懂，太难了”', score:0 }
+    ]},
+    { id:5, section:'板块二 · 能力现状检测', title:'孩子读英语时，通常是什么状态？', hint:'学习状态决定学习效果', type:'single', options:[
+      { letter:'A', text:'主动拿书读，越读越开心', score:10 },
+      { letter:'B', text:'要催才读，读几分钟就分心走神', score:5 },
+      { letter:'C', text:'抗拒抵触，一说英语就想跑', score:0 }
+    ]},
+    { id:6, section:'🧒 让孩子试试', title:'请把手机给孩子，让TA看看这张图，选出正确的单词', hint:'这道题让孩子直接参与，测的是“见词识图”能力', type:'picture', picture:'🐱', options:[
+      { letter:'A', text:'dog', score:0 },
+      { letter:'B', text:'cat', score:10 },
+      { letter:'C', text:'pig', score:0 },
+      { letter:'D', text:'hat', score:0 }
+    ]},
+    { id:7, section:'板块三 · 隐藏问题排查', title:'以下哪些情况符合你家孩子？（多选）', hint:'选中的每一项，都是孩子英语路上的“绊脚石”', type:'multi', options:[
+      { letter:'', text:'单词今天背了明天就忘', deduct:3 },
+      { letter:'', text:'发音不标准，带有中文口音', deduct:3 },
+      { letter:'', text:'能读课文，但考试阅读理解总丢分', deduct:3 },
+      { letter:'', text:'学了1年以上还是不敢开口说英语', deduct:3 },
+      { letter:'', text:'一写单词就拼错', deduct:3 }
+    ], maxDeduct:15 },
+    { id:8, section:'板块三 · 隐藏问题排查', title:'你知道2024年秋季小学英语教材改版后，三年级第一单元对孩子的要求是什么吗？', hint:'新课标变化很大，很多家长还不清楚', type:'single', options:[
+      { letter:'A', text:'知道，已经在帮孩子做准备', score:10 },
+      { letter:'B', text:'听说改了，但不清楚具体改了什么', score:5 },
+      { letter:'C', text:'完全不知道改了啥', score:0 }
+    ]},
+    { id:9, section:'板块三 · 隐藏问题排查', title:'孩子现在上的英语课/用的APP，主要教什么？', hint:'搞清现状，才能找准问题', type:'single', options:[
+      { letter:'A', text:'系统的拼读+阅读训练，有真人老师跟进指导', score:10 },
+      { letter:'B', text:'唱唱跳跳磨耳朵，或者单纯刷单词App', score:5 },
+      { letter:'C', text:'没上任何课 / 觉得学校教的就够了', score:0 }
+    ]},
+    { id:10, section:'板块四 · 家长投入度', title:'你每天陪孩子学英语的时间是？', hint:'不是考察你——是为了帮你找到最省心的方案', type:'single', options:[
+      { letter:'A', text:'30分钟以上，有固定计划', score:10 },
+      { letter:'B', text:'10–30分钟，随缘安排', score:5 },
+      { letter:'C', text:'基本没时间 / 全靠孩子自己', score:0 }
+    ]},
+    { id:11, section:'板块四 · 家长投入度', title:'你对孩子英语的期望是？', hint:'目标不同，路径完全不同', type:'single', options:[
+      { letter:'A', text:'能自主阅读英文绘本和章节书，真正把英语用起来', score:10 },
+      { letter:'B', text:'学校考试别拖后腿就行', score:5 },
+      { letter:'C', text:'还没认真想过 / 不敢想太远', score:0 }
+    ]}
+  ],
+
+  '7-8': [
+    { id:2, section:'板块一 · 黄金期诊断', title:'孩子几岁开始接触英语？', hint:'越早开始系统训练，现在越从容', type:'single', options:[
+      { letter:'A', text:'5岁以前就开始接触了', score:10 },
+      { letter:'B', text:'小学一年级才开始（6-7岁）', score:5 },
+      { letter:'C', text:'上了小学才开始在学校接触英语', score:0 }
+    ]},
+    { id:3, section:'板块二 · 能力现状检测', title:'孩子看到稍复杂的词（如「elephant」「beautiful」），能读出来吗？', hint:'这道题测的是解码能力是否已经自动化', type:'single', options:[
+      { letter:'A', text:'能比较流畅地读出来，不需要逐字母拼', score:10 },
+      { letter:'B', text:'需要停一下、拼一拼，但最终能读出来', score:5 },
+      { letter:'C', text:'看到长单词就直接跳过或说“不会”', score:0 }
+    ]},
+    { id:4, section:'板块二 · 能力现状检测', title:'孩子看到句子「She bought a present for her friend.」，能理解什么意思吗？', hint:'这题测的是句子级理解——三年级的分水岭', type:'single', options:[
+      { letter:'A', text:'能读出来并且知道意思（她给朋友买了礼物）', score:10 },
+      { letter:'B', text:'单词基本认识，但读完不太确定整句在说什么', score:5 },
+      { letter:'C', text:'好几个词不认识，读都读不下来', score:0 }
+    ]},
+    { id:5, section:'板块二 · 能力现状检测', title:'孩子读英语时的状态是？', hint:'状态比分数更能说明问题', type:'single', options:[
+      { letter:'A', text:'能比较专注地读完一段内容，不需要人催', score:10 },
+      { letter:'B', text:'规定时间内能读，但需要家长监督提醒', score:5 },
+      { letter:'C', text:'一让读英语就拖拖拉拉、找各种理由逃避', score:0 }
+    ]},
+    { id:6, section:'板块二 · 能力现状检测', title:'学校英语考试或测验，孩子通常能拿多少分？（百分制估算）', hint:'学校成绩是重要参考，但不是唯一标准', type:'single', options:[
+      { letter:'A', text:'90分以上，英语是优势科目', score:10 },
+      { letter:'B', text:'70-89分，中等水平，时好时坏', score:5 },
+      { letter:'C', text:'70分以下，英语已经是拖后腿的科目', score:0 }
+    ]},
+    { id:7, section:'板块三 · 隐藏问题排查', title:'以下哪些情况符合你家孩子？（多选）', hint:'到了这个年龄段，问题会越来越明显', type:'multi', options:[
+      { letter:'', text:'单词背了忘、忘了背，词汇量上不去', deduct:3 },
+      { letter:'', text:'发音不准，朗读时磕磕巴巴', deduct:3 },
+      { letter:'', text:'考试阅读理解总是丢大分', deduct:3 },
+      { letter:'', text:'学了2年以上还是不敢开口说英语', deduct:3 },
+      { letter:'', text:'语法混乱，写作时错误连篇', deduct:3 }
+    ], maxDeduct:15 },
+    { id:8, section:'板块三 · 隐藏问题排查', title:'你知道三年级开始，英语阅读量和难度会比一二年级提高多少吗？', hint:'三年级是英语学习的分水岭', type:'single', options:[
+      { letter:'A', text:'知道，阅读量翻倍、从对话变成段落，已经在帮孩子准备', score:10 },
+      { letter:'B', text:'大概知道会变难，但不知道具体难在哪', score:5 },
+      { letter:'C', text:'完全没概念 / 觉得跟着学校走就行', score:0 }
+    ]},
+    { id:9, section:'板块三 · 隐藏问题排查', title:'孩子现在上的英语课主要教什么？', hint:'方法对不对，效果差10倍', type:'single', options:[
+      { letter:'A', text:'系统的拼读+阅读训练，有老师跟进和反馈', score:10 },
+      { letter:'B', text:'学校同步辅导/新概念/刷题班，以应试为主', score:5 },
+      { letter:'C', text:'没上课外班，全靠学校一周几节英语课', score:0 }
+    ]},
+    { id:10, section:'板块四 · 家长投入度', title:'你每天陪孩子学英语的时间是？', hint:'这个阶段家长的角色从“老师”转向“支持者”', type:'single', options:[
+      { letter:'A', text:'每天20分钟以上，有固定的阅读或听读计划', score:10 },
+      { letter:'B', text:'偶尔检查一下作业，但日常主要靠孩子自己', score:5 },
+      { letter:'C', text:'基本没时间管英语，孩子完全靠自己', score:0 }
+    ]},
+    { id:11, section:'板块四 · 家长投入度', title:'你对孩子英语的期望是？', hint:'这个阶段目标需要更清晰了', type:'single', options:[
+      { letter:'A', text:'能自主阅读英文原版书，中考英语冲满分', score:10 },
+      { letter:'B', text:'学校考试保持中上水平，别被英语拖后腿', score:5 },
+      { letter:'C', text:'能及格就行 / 还没认真想过', score:0 }
+    ]}
+  ],
+
+  '9-12': [
+    { id:2, section:'板块一 · 能力现状检测', title:'孩子从几岁开始系统学英语？（不是学校上课，是有课外训练）', hint:'起点早晚，决定现在的差距大小', type:'single', options:[
+      { letter:'A', text:'6岁以前就开始系统训练了', score:10 },
+      { letter:'B', text:'小学低年级（7-8岁）才开始课外学', score:5 },
+      { letter:'C', text:'基本没有过系统的课外英语训练', score:0 }
+    ]},
+    { id:3, section:'板块一 · 能力现状检测', title:'孩子能自主阅读多长的英文内容？', hint:'阅读耐力是衡量真实阅读能力的最佳指标', type:'single', options:[
+      { letter:'A', text:'能读章节书（如Magic Tree House），一次读一章没问题', score:10 },
+      { letter:'B', text:'能读简短的绘本或分级读物，但稍长就读不动了', score:5 },
+      { letter:'C', text:'基本无法自主阅读任何英文材料，完全依赖翻译', score:0 }
+    ]},
+    { id:4, section:'板块一 · 能力现状检测', title:'给孩子一篇100词左右的英文短文（相当于五年级课文难度），TA能理解多少？', hint:'阅读理解能力是这个阶段的核心', type:'single', options:[
+      { letter:'A', text:'能读懂大意并能回答细节问题', score:10 },
+      { letter:'B', text:'能看懂一半左右，需要借助词典或翻译', score:5 },
+      { letter:'C', text:'基本看不懂，单词量严重不足', score:0 }
+    ]},
+    { id:5, section:'板块一 · 能力现状检测', title:'孩子对英语的态度是怎样的？', hint:'态度决定高度——到了这个年龄，态度比能力更难改变', type:'single', options:[
+      { letter:'A', text:'喜欢英语，觉得英语是有用的工具', score:10 },
+      { letter:'B', text:'不讨厌也不喜欢，当成一项必须完成的任务', score:5 },
+      { letter:'C', text:'讨厌英语 / 觉得自己“不是学英语的料”', score:0 }
+    ]},
+    { id:6, section:'板块一 · 能力现状检测', title:'学校英语考试，孩子的成绩在班上大概什么位置？', hint:'定位一下当前的竞争位置', type:'single', options:[
+      { letter:'A', text:'前20%，英语是优势科目', score:10 },
+      { letter:'B', text:'中等水平（20%-60%之间），不突出也不拖后腿', score:5 },
+      { letter:'C', text:'后40%，英语已经是明显的短板', score:0 }
+    ]},
+    { id:7, section:'板块二 · 隐藏问题深度排查', title:'以下哪些情况符合你家孩子？（多选）', hint:'到了高年级，问题往往不是单一的而是复合的', type:'multi', options:[
+      { letter:'', text:'单词记不住，词汇量远低于同龄水平', deduct:3 },
+      { letter:'', text:'语法一塌糊涂，写作和翻译错误百出', deduct:3 },
+      { letter:'', text:'考试阅读理解几乎全错，读不懂文章', deduct:3 },
+      { letter:'', text:'听力完全跟不上，一听英语就发懵', deduct:3 },
+      { letter:'', text:'已经对英语产生“放弃”心态，觉得怎么学都学不好', deduct:3 }
+    ], maxDeduct:15 },
+    { id:8, section:'板块二 · 隐藏问题深度排查', title:'你觉得孩子英语学习最大的困难是什么？', hint:'家长看到的和学生感受到的往往不一样', type:'single', options:[
+      { letter:'A', text:'方法不对——孩子其实愿意学，但一直没用对方法', score:10 },
+      { letter:'B', text:'动力不足——孩子觉得英语没用/没意思，不愿意花时间', score:5 },
+      { letter:'C', text:'基础太差——欠账太多，不知道从哪补起', score:0 }
+    ]},
+    { id:9, section:'板块三 · 当前方法评估', title:'孩子现在上的英语课主要教什么？', hint:'高年级时间宝贵，方法必须精准', type:'single', options:[
+      { letter:'A', text:'原版阅读+系统写作训练，培养真实英语能力', score:10 },
+      { letter:'B', text:'学校同步/新概念/刷题，以应试提分为主', score:5 },
+      { letter:'C', text:'没上课外班 / 已经停了 / 找不到合适的', score:0 }
+    ]},
+    { id:10, section:'板块四 · 家长投入度', title:'你每周能陪/督促孩子学英语的时间是？', hint:'高年级孩子需要的是方向，不是监督', type:'single', options:[
+      { letter:'A', text:'每周3次以上，有固定安排并能检查进度', score:10 },
+      { letter:'B', text:'每周1-2次，主要是问一下“英语学了没”', score:5 },
+      { letter:'C', text:'基本没时间管 / 孩子已经完全自主（或完全放任）', score:0 }
+    ]},
+    { id:11, section:'板块四 · 家长投入度', title:'你对孩子英语的期望是？', hint:'到了这个年龄，期望需要更现实、更清晰', type:'single', options:[
+      { letter:'A', text:'中考英语冲击高分甚至满分，为高中打下扎实基础', score:10 },
+      { letter:'B', text:'能跟上学校进度，中考不拖总分的后腿', score:5 },
+      { letter:'C', text:'已经不敢有什么期望了 / 能及格就行', score:0 }
+    ]}
+  ]
+};
+
+// questions starts with only the age question; the rest are built dynamically
+let questions = [ageQuestion];
 
 // ===== STATE =====
 let currentQ = 0;
@@ -1098,6 +1207,7 @@ function startQuiz() {
   answers = {};
   multiSelections = {};
   totalScore = 0;
+  questions = [ageQuestion];
   renderQuestion(0);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1118,6 +1228,15 @@ function toggleMulti(qIdx, optIdx) {
 }
 
 function nextQ() {
+  // After answering age question (Q1), build the rest of the question list
+  if (currentQ === 0 && questions.length === 1 && answers[1] !== undefined) {
+    const group = getAgeGroup(answers[1]);
+    const tail = ageQuestionBanks[group];
+    // Re-assign IDs to ensure they match the bank definitions (2-11)
+    tail.forEach((q, i) => { q.id = i + 2; });
+    questions = [ageQuestion, ...tail];
+  }
+
   if (currentQ < questions.length - 1) {
     currentQ++;
     renderQuestion(currentQ);
@@ -1778,6 +1897,7 @@ function retakeQuiz() {
   answers = {};
   multiSelections = {};
   totalScore = 0;
+  questions = [ageQuestion];
   renderStart();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
