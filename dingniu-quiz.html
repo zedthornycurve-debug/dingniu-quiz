@@ -1213,7 +1213,12 @@ function startQuiz() {
 }
 
 function selectSingle(qIdx, optIdx) {
-  answers[questions[qIdx].id] = optIdx;
+  const qId = questions[qIdx].id;
+  if (answers[qId] === optIdx) {
+    delete answers[qId];
+  } else {
+    answers[qId] = optIdx;
+  }
   renderQuestion(qIdx);
 }
 
